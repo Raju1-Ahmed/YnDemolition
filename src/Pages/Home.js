@@ -10,7 +10,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BrisbaneLandingSection from "../components/BrisbaneLandingSection";
-import QuoteRequestSection from "../components/QuoteRequestSection";
+import demolitionPromo from "../Assets/Demolation Promo R4.mp4";
 
 function Home() {
   const settings = {
@@ -299,6 +299,30 @@ function Home() {
   return (
     <div className="font-sans text-gray-800">
       <BrisbaneLandingSection />
+
+      <section className="bg-[#0d1418] py-16 text-white">
+        <div className="container mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl">
+            <video autoPlay loop muted playsInline controls preload="auto" className="max-h-[560px] w-full object-cover">
+              <source src={demolitionPromo} type="video/mp4" />
+              Your browser does not support the video player.
+            </video>
+          </div>
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.3em] text-amber-300">
+              Our Work in Action
+            </p>
+            <h2 className="mt-4 text-4xl font-black leading-tight md:text-5xl">
+              See the work behind every cleared site
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-slate-300">
+              See the machinery, planning and controlled demolition work that
+              help move Brisbane projects from an existing structure to a
+              clean, ready-to-use site.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-16 md:py-20">
         <div className="container mx-auto max-w-7xl px-5 sm:px-6">
@@ -760,8 +784,6 @@ function Home() {
           </p>
         </div>
       </section>
-
-      <QuoteRequestSection />
 
       <section className="bg-[#0d1418] py-20 text-white">
         <div className="container mx-auto px-6 text-center">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -389,12 +390,12 @@ function Service() {
               Contact our team for a free site assessment and detailed quote. We'll guide you through every step of the process.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
+              <Link
+                to="/quote"
                 className="px-8 py-4 bg-amber-400 text-black font-bold rounded-xl hover:bg-amber-500 transition shadow-lg"
               >
                 Get Free Quote
-              </a>
+              </Link>
               <a
                 href="tel:+610431270377"
                 className="px-8 py-4 border-2 border-amber-400 text-amber-400 font-bold rounded-xl hover:bg-white/10 transition"
@@ -983,7 +984,8 @@ function Service() {
         </div>
       </section>
 
-      {/* Quote Form CTA Section */}
+      {/* Quote Form CTA Section removed from Service page */}
+      {false && (
       <section className="py-20 bg-gradient-to-r from-gray-900 to-gray-800">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
@@ -1142,6 +1144,7 @@ function Service() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Why Choose Us */}
       <section

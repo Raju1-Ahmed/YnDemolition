@@ -20,6 +20,7 @@ const slides = [
       "Fast Site Clearance",
     ],
     primaryLabel: "Get Your Free Quote",
+    primaryTo: "/quote",
     secondaryLabel: "Explore Demolition Services",
     secondaryTo: "/service",
     contentPosition: "items-center justify-start",
@@ -38,6 +39,7 @@ const slides = [
       "Cleaner Site Handover",
     ],
     primaryLabel: "Request House Demolition Quote",
+    primaryTo: "/quote",
     secondaryLabel: "View Residential Services",
     secondaryTo: "/residential",
     contentPosition: "items-end justify-start",
@@ -56,6 +58,7 @@ const slides = [
       "Reliable Turnaround",
     ],
     primaryLabel: "Talk to Our Team",
+    primaryTo: "/quote",
     secondaryLabel: "See Commercial Services",
     secondaryTo: "/commercial",
     contentPosition: "items-center justify-end",
@@ -74,6 +77,7 @@ const slides = [
       "Practical Site Clearance",
     ],
     primaryLabel: "Plan Your Demolition",
+    primaryTo: "/quote",
     secondaryLabel: "Contact the Brisbane Team",
     secondaryTo: "/contact",
     contentPosition: "items-end justify-start",
@@ -92,6 +96,7 @@ const slides = [
       "Clear Client Communication",
     ],
     primaryLabel: "Request Asbestos Enquiry",
+    primaryTo: "/quote",
     secondaryLabel: "Explore Asbestos Services",
     secondaryTo: "/asbestos",
     contentPosition: "items-center justify-start",
@@ -110,6 +115,7 @@ const slides = [
       "Pre-Construction Support",
     ],
     primaryLabel: "Check Service Availability",
+    primaryTo: "/quote",
     secondaryLabel: "View All Services",
     secondaryTo: "/service",
     contentPosition: "items-end justify-end",
@@ -171,10 +177,18 @@ function HeroBanner() {
 
                   <div className="mt-10 flex flex-wrap gap-4">
                     <Link
-                      to="/contact"
-                      className="rounded-xl bg-yellow-500 px-7 py-4 font-bold text-black shadow-[0_18px_40px_rgba(234,179,8,0.26)] transition hover:-translate-y-0.5 hover:bg-yellow-400"
+                      to={slide.primaryTo || "/quote"}
+                      className={`group relative rounded-xl border-2 border-yellow-100 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-400 px-7 py-4 text-base font-black text-slate-950 shadow-[0_18px_40px_rgba(250,204,21,0.46)] ring-4 ring-yellow-300/30 transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:from-yellow-200 hover:via-yellow-300 hover:to-amber-300 hover:shadow-[0_24px_54px_rgba(250,204,21,0.62)] focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200 md:text-lg ${idx === 0 ? "animate-[pulse_2.4s_ease-in-out_infinite]" : ""}`}
                     >
-                      {slide.primaryLabel}
+                      {idx === 0 && (
+                        <span className="absolute -right-2 -top-3 rounded-full bg-red-600 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white shadow-lg">
+                          Free Quote
+                        </span>
+                      )}
+                      <span className="flex items-center gap-2">
+                        {slide.primaryLabel}
+                        <span aria-hidden="true" className="text-xl leading-none">→</span>
+                      </span>
                     </Link>
                     <Link
                       to={slide.secondaryTo}

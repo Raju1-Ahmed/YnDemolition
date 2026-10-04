@@ -25,26 +25,66 @@ const initialForm = {
   details: "",
 };
 
-function QuoteRequestSection() {
-  const [formData, setFormData] = useState(initialForm);
+const GOOGLE_APPS_SCRIPT_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbyLCZY1Y_-n7lCyjsSSYhGTDiTgic2s4AePI3Hq-xBhtWCPylxOGae_VVL5mqb0dPbe/exec";
+
+function QuoteRequestSection({ focusForm = false }) {
+  const [formState, setFormState] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((current) => ({
+    setFormState((current) => ({
       ...current,
       [name]: value,
     }));
     setSubmitted(false);
+    setSubmitError("");
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitted(false);
+    setSubmitError("");
+
+    const formData = {
+      name: formState.fullName,
+      phone: formState.phone,
+      email: formState.email,
+      propertyOwner: formState.ownerStatus,
+      service: formState.interest,
+      landLocation: formState.location,
+      message: formState.details,
+    };
+
+    try {
+      const response = await fetch(GOOGLE_APPS_SCRIPT_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("The quote request could not be submitted.");
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        "We could not submit your request right now. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 py-24 text-white">
+    <section className={`relative overflow-hidden bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 ${focusForm ? "py-8 md:py-12" : "py-24"} text-white`}>
       <div className="absolute inset-0 opacity-20">
         <img
           src="https://i.ibb.co.com/chb9kwtB/Whats-App-Image-2025-09-05-at-9-38-01-PM.jpg"
@@ -55,7 +95,7 @@ function QuoteRequestSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_40%)]"></div>
 
       <div className="relative container mx-auto px-6">
-        <div className="mx-auto max-w-3xl text-center">
+        {!focusForm && <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-black uppercase tracking-[0.32em] text-white/80">
             Ready To Move Forward
           </p>
@@ -67,9 +107,9 @@ function QuoteRequestSection() {
             for safe, efficient, and certified demolition services across
             Brisbane and nearby service areas.
           </p>
-        </div>
+        </div>}
 
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
+        {!focusForm && <div className="mt-8 flex flex-wrap justify-center gap-4">
           <a
             href="tel:+610431270377"
             className="inline-flex items-center gap-2 rounded-xl bg-[#0d1418] px-7 py-4 font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-[#162027]"
@@ -84,15 +124,15 @@ function QuoteRequestSection() {
             <FaEnvelope />
             Contact Us
           </Link>
-        </div>
+        </div>}
 
-        <p className="mt-12 text-center text-base font-black uppercase tracking-[0.18em] text-white md:text-xl">
+        {!focusForm && <p className="mt-12 text-center text-base font-black uppercase tracking-[0.18em] text-white md:text-xl">
           Licensed Brisbane Demolition Experts | Fast & Reliable
-        </p>
+        </p>}
 
         <div
           id="main-quote-form"
-          className="relative mx-auto mt-10 max-w-5xl rounded-[2rem] border border-[#c9a44f] bg-[#10171c] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.42)] md:p-5"
+          className={`relative mx-auto ${focusForm ? "mt-0 ring-4 ring-yellow-200/50 shadow-[0_24px_80px_rgba(15,103,255,0.34)]" : "mt-10"} max-w-5xl rounded-[2rem] border border-[#c9a44f] bg-[#10171c] p-4 shadow-[0_30px_90px_rgba(0,0,0,0.42)] md:p-5`}
         >
           <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0f67ff] px-6 py-3 text-[11px] font-black uppercase tracking-[0.35em] text-white shadow-[0_16px_40px_rgba(15,103,255,0.32)] md:px-8">
             <span className="flex items-center gap-2">
@@ -126,7 +166,7 @@ function QuoteRequestSection() {
                 <input
                   type="text"
                   name="fullName"
-                  value={formData.fullName}
+                  value={formState.fullName}
                   onChange={handleChange}
                   placeholder="Your full name"
                   className="w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-[#0f67ff] focus:ring-2 focus:ring-[#0f67ff]/30"
@@ -141,7 +181,7 @@ function QuoteRequestSection() {
                 <input
                   type="tel"
                   name="phone"
-                  value={formData.phone}
+                  value={formState.phone}
                   onChange={handleChange}
                   placeholder="+61"
                   className="w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-[#0f67ff] focus:ring-2 focus:ring-[#0f67ff]/30"
@@ -156,7 +196,7 @@ function QuoteRequestSection() {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
+                  value={formState.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
                   className="w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-[#0f67ff] focus:ring-2 focus:ring-[#0f67ff]/30"
@@ -174,7 +214,7 @@ function QuoteRequestSection() {
                       type="radio"
                       name="ownerStatus"
                       value="yes"
-                      checked={formData.ownerStatus === "yes"}
+                      checked={formState.ownerStatus === "yes"}
                       onChange={handleChange}
                     />
                     Yes
@@ -184,7 +224,7 @@ function QuoteRequestSection() {
                       type="radio"
                       name="ownerStatus"
                       value="no"
-                      checked={formData.ownerStatus === "no"}
+                      checked={formState.ownerStatus === "no"}
                       onChange={handleChange}
                     />
                     No
@@ -199,7 +239,7 @@ function QuoteRequestSection() {
                   </span>
                   <select
                     name="interest"
-                    value={formData.interest}
+                    value={formState.interest}
                     onChange={handleChange}
                     className="w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-[#0f67ff] focus:ring-2 focus:ring-[#0f67ff]/30"
                   >
@@ -218,7 +258,7 @@ function QuoteRequestSection() {
                   <input
                     type="text"
                     name="location"
-                    value={formData.location}
+                    value={formState.location}
                     onChange={handleChange}
                     placeholder="Land location"
                     className="w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-[#0f67ff] focus:ring-2 focus:ring-[#0f67ff]/30"
@@ -233,7 +273,7 @@ function QuoteRequestSection() {
                 </span>
                 <textarea
                   name="details"
-                  value={formData.details}
+                  value={formState.details}
                   onChange={handleChange}
                   rows="4"
                   placeholder="Scope, timing, demolition type, access requirements..."
@@ -245,6 +285,7 @@ function QuoteRequestSection() {
               <div className="md:col-span-2">
                 <button
                   type="submit"
+                  disabled={submitting}
                   className="w-full rounded-xl bg-[#0f67ff] px-6 py-4 text-base font-black uppercase tracking-[0.22em] text-white shadow-[0_16px_34px_rgba(15,103,255,0.25)] transition hover:bg-[#1f75ff]"
                 >
                   Submit Request
@@ -260,11 +301,17 @@ function QuoteRequestSection() {
                   touch soon.
                 </div>
               ) : null}
+
+              {submitError ? (
+                <div className="md:col-span-2 rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200">
+                  {submitError}
+                </div>
+              ) : null}
             </form>
           </div>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
+        {!focusForm && <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
           {trustLogos.map((logo) => (
             <div
               key={logo}
@@ -273,7 +320,7 @@ function QuoteRequestSection() {
               {logo}
             </div>
           ))}
-        </div>
+        </div>}
       </div>
     </section>
   );

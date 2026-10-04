@@ -25,6 +25,8 @@ import Construction from "./Pages/Construction";
 import Loader from "./components/Loder";
 import NotFound from "./Pages/NotFound";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import Terms from "./Pages/Terms";
+import QuotePage from "./Pages/QuotePage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -58,6 +60,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/quote" element={<QuotePage />} />
         <Route path="/service" element={<Service />} />
         <Route path="/sectors" element={<Sectors />} />
         <Route path="/blog" element={<Blog />} />
@@ -72,6 +75,7 @@ function App() {
         <Route path="/CivilWorks" element={<CivilWorks />} />
         <Route path="/Construction" element={<Construction />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
 
         {/* Catch-All Route */}
         <Route path="*" element={<NotFound />} />

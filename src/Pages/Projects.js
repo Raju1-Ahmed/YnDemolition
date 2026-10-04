@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import demolitionMachine from "../Assets/IMG-20260519-WA0018.jpg.jpeg";
+import stripOut from "../Assets/IMG-20260519-WA0022.jpg.jpeg";
+import demolitionProgress from "../Assets/IMG-20260523-WA0006.jpg.jpeg";
+import clearedSite from "../Assets/IMG-20260725-WA0008.jpg.jpeg";
 
 const PROJECT_CATEGORIES = [
   "All",
@@ -40,6 +44,30 @@ function Projects() {
       category: "Infrastructure",
       image: "https://i.ibb.co.com/Hf7rxqVP/Whats-App-Image-2025-09-05-at-9-38-08-PM.jpg",
       link: "/projects/bridge-demolition",
+    },
+    {
+      title: "Residential Machine Demolition",
+      category: "Residential",
+      image: demolitionMachine,
+      link: "/residential",
+    },
+    {
+      title: "House Strip-Out & Removal",
+      category: "Residential",
+      image: stripOut,
+      link: "/residential",
+    },
+    {
+      title: "Controlled Demolition Progress",
+      category: "Commercial",
+      image: demolitionProgress,
+      link: "/commercial",
+    },
+    {
+      title: "Cleared Site Handover",
+      category: "Infrastructure",
+      image: clearedSite,
+      link: "/CivilWorks",
     },
   ];
 

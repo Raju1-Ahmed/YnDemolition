@@ -1,134 +1,101 @@
 import React from "react";
+import LegalPageLayout from "./LegalPageLayout";
+
+const bulletList = (items) => (
+  <ul className="list-disc space-y-2 pl-6">
+    {items.map((item) => <li key={item}>{item}</li>)}
+  </ul>
+);
 
 const PrivacyPolicy = () => {
-  const companyName = "YN Demolition / YN Enterprise";
-  const contactEmail = "privacy@ynenterprise.com";
-  const effectiveDate = "November 21, 2025";
+  const sections = [
+    {
+      id: "overview", number: "01", title: "Purpose and application",
+      subsections: [
+        { id: "policy-scope", title: "Policy scope", body: <p>This policy applies when you visit our website, submit an enquiry, request a quote, contact us or otherwise interact with our business.</p> },
+        { id: "australian-privacy", title: "Australian privacy principles", body: <p>We aim to manage personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles, to the extent they apply to our business.</p> },
+      ],
+      body: <><p>YN Demolition / YN Enterprise respects your privacy and is committed to handling personal information responsibly and transparently. This policy explains how we collect, use, hold, disclose and protect information when you visit our website, request a quote, submit an enquiry or otherwise interact with our business.</p><p>We aim to handle personal information in accordance with applicable Australian privacy laws, including the Privacy Act 1988 (Cth) and the Australian Privacy Principles, to the extent they apply to our business.</p></>,
+    },
+    {
+      id: "collect", number: "02", title: "Information we collect",
+      body: <><p>Depending on how you interact with us, we may collect:</p>{bulletList(["Full name, phone number and email address.", "Property or project address, suburb and postcode.", "Details about your demolition, site-clearing or related project.", "Information provided through quote forms and correspondence.", "Preferred contact details and communication preferences.", "Other information you voluntarily provide."])}<p>We generally request only information reasonably necessary to respond to your enquiry, assess project requirements, provide services or operate our business.</p></>,
+    },
+    {
+      id: "technical", number: "03", title: "Website and technical information",
+      body: <><p>When you visit our website, technical information may be collected automatically depending on the technologies and services in use.</p>{bulletList(["IP address, browser type and version.", "Device type and operating system.", "Pages viewed, referring source and visit date or time.", "Approximate location derived from technical data.", "Information about how you interact with the website."])}<p>This information may be used for website functionality, security, analytics, performance measurement and improvement.</p></>,
+    },
+    {
+      id: "collection", number: "04", title: "How we collect information",
+      body: <><p>We may collect personal information:</p>{bulletList(["Directly from you through an enquiry or quote form.", "When you contact us by phone, email or another communication channel.", "When you request service information or discuss a project with our team.", "When you use or interact with our website.", "Through analytics, cookies, pixels, tags or similar technologies.", "From third parties where reasonably necessary and permitted by law."])}<p>Where practical, we collect personal information directly from you.</p></>,
+    },
+    {
+      id: "use", number: "05", title: "How we use your information",
+      body: <><p>We may collect, hold and use information to:</p>{bulletList(["Respond to enquiries and assess demolition or site-clearing requirements.", "Prepare quotes or estimates and arrange inspections or consultations.", "Coordinate requested services and communicate project updates.", "Manage customer, transaction and business records.", "Improve our website, services and customer experience.", "Maintain security and investigate fraud, misuse or incidents.", "Comply with legal obligations and protect our legal rights.", "Manage complaints, disputes and related enquiries."])}<p>We will not use your personal information for unrelated purposes unless permitted or required by law.</p></>,
+    },
+    {
+      id: "cookies", number: "06", title: "Cookies, analytics and advertising technologies",
+      body: <><p>Our website may use cookies, pixels, tags, Google Tag Manager, analytics tools and similar technologies to operate, secure and improve the website.</p><p>These technologies may help us with:</p>{bulletList(["Website analytics and performance measurement.", "Understanding website interactions and improving user experience.", "Measuring advertising or marketing performance.", "Website security and relevant advertising or remarketing where applicable."])}<p>Third-party technology providers may process information according to their own privacy policies and applicable laws. You can control or restrict cookies through your browser settings, although this may affect some website functionality.</p></>,
+    },
+    {
+      id: "forms", number: "07", title: "Lead forms and quote enquiries",
+      body: <><p>Information submitted through our website or an associated online form may be used to contact you, understand your project, assess whether our services are suitable, prepare or arrange a quote, arrange a site assessment and provide relevant service information.</p><p>Submitting an enquiry does not guarantee that a quote, service or contract will be provided.</p></>,
+    },
+    {
+      id: "marketing", number: "08", title: "Direct marketing",
+      body: <p>Where permitted by law, we may use your contact information to send service information, offers or updates that may be relevant to you. We will comply with applicable Australian direct-marketing and spam requirements. You may ask us to stop marketing communications or use the unsubscribe option provided.</p>,
+    },
+    {
+      id: "sharing", number: "09", title: "When information is shared",
+      body: <><p>We do not sell your personal information. We may disclose relevant information where reasonably necessary to operate our business or provide requested services, including to:</p>{bulletList(["Contractors and service providers involved in requested services.", "Website hosting, IT, software and cloud-service providers.", "Analytics or advertising technology providers.", "Professional advisers and payment providers where applicable.", "Government agencies or authorities where required or authorised by law.", "Other parties where you have requested or authorised disclosure."])}<p>We expect providers handling information on our behalf to use it only for the relevant business purpose and to handle it appropriately.</p></>,
+    },
+    {
+      id: "overseas", number: "10", title: "Overseas disclosure",
+      body: <p>Some technology, hosting, cloud, analytics, advertising or other providers may operate or store information outside Australia. Personal information may therefore be handled by overseas recipients depending on the services used at the relevant time. Where required by law, we will take reasonable steps in relation to overseas disclosures.</p>,
+    },
+    {
+      id: "security", number: "11", title: "Security and retention",
+      body: <><p>We take reasonable steps to protect personal information from unauthorised access, disclosure, misuse, loss, destruction or alteration. Information may be stored using business systems, website platforms, cloud services, email systems and other technology providers.</p><p>No electronic storage or transmission method is completely secure. We retain information only as long as reasonably necessary for the purpose collected, legitimate business purposes or where required or permitted by law. When no longer required, we may securely delete, destroy or de-identify it where practical.</p></>,
+    },
+    {
+      id: "rights", number: "12", title: "Access, correction and privacy choices",
+      body: <><p>You may request access to, or correction of, personal information we hold about you. We may verify your identity before responding. You may also ask us to delete information, subject to legal, accounting, contractual, insurance or regulatory requirements.</p><p>Where lawful and practicable, you may deal with us anonymously or using a pseudonym. This may not be practical when we need your details to respond, provide a quote, arrange services or comply with legal obligations.</p></>,
+    },
+    {
+      id: "complaints", number: "13", title: "Privacy complaints",
+      subsections: [
+        { id: "complaint-information", title: "Information to include", body: <p>Please provide your name and contact details, details of your concern, relevant dates or communications and the outcome you are seeking.</p> },
+        { id: "complaint-contact", title: "Contact for privacy complaints", body: <p>Email privacy@ynenterprise.com or call +61 431 270 377. We aim to respond as soon as reasonably practicable.</p> },
+      ],
+      body: <><p>To make a privacy complaint, provide your name and contact details, the concern, relevant dates or communications and the outcome you are seeking. We will take reasonable steps to investigate and respond.</p><div className="rounded-2xl border border-amber-200 bg-amber-50 p-5"><p className="font-black text-slate-950">privacy@ynenterprise.com</p><p className="mt-1 text-sm text-slate-600">+61 431 270 377</p><p className="mt-1 text-sm text-slate-600">84 Browns Plains Rd, Browns Plains, Brisbane QLD 4118</p></div><p>If your complaint remains unresolved, you may be able to contact the Office of the Australian Information Commissioner (OAIC), subject to the requirements that apply to your circumstances.</p></>,
+    },
+    {
+      id: "third-party", number: "14", title: "Children and third-party websites",
+      body: <><p>Our website and services are not specifically directed at children, and we do not knowingly seek unnecessary personal information from children.</p><p>Our website may link to third-party websites or services. Their own privacy practices apply after you leave our website, and we are not responsible for their content, security or privacy practices.</p></>,
+    },
+    {
+      id: "anonymity", number: "15", title: "Anonymity and pseudonymity",
+      body: <p>Where lawful and practicable, you may deal with us without identifying yourself or by using a pseudonym. This may not be practical where we need your identity or contact details to respond to an enquiry, provide a quote, arrange services, enter into a contract or comply with legal obligations.</p>,
+    },
+    {
+      id: "changes", number: "16", title: "Changes to this policy",
+      body: <p>We may update this policy when our business operations, website, technology providers, advertising technologies, data practices or applicable privacy requirements change. The updated version will be published on this website with a revised last-updated date.</p>,
+    },
+    {
+      id: "important-notice", number: "17", title: "Important notice",
+      body: <p>This policy should be kept accurate and updated whenever the website, advertising technologies, forms, CRM systems, service providers or data-handling practices change.</p>,
+    },
+    {
+      id: "contact", number: "18", title: "Contact us",
+      subsections: [
+        { id: "business-contact", title: "YN Demolition / YN Enterprise", body: <p>84 Browns Plains Rd, Browns Plains, Brisbane QLD 4118 · +61 431 270 377 · ynenterprise.com</p> },
+        { id: "privacy-enquiries", title: "Privacy enquiries", body: <p>For privacy questions, access or correction requests and complaints, email privacy@ynenterprise.com.</p> },
+      ],
+      body: <><p>For questions, access or correction requests, privacy enquiries or complaints, contact YN Demolition / YN Enterprise:</p><div className="rounded-2xl border border-amber-200 bg-amber-50 p-5"><p className="font-black text-slate-950">privacy@ynenterprise.com</p><p className="mt-1 text-sm text-slate-600">+61 431 270 377</p><p className="mt-1 text-sm text-slate-600">ynenterprise.com</p></div></>,
+    },
+  ];
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-800 py-16">
-      <div className="container mx-auto px-6 lg:px-20">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12">
-          <header className="mb-10 text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-              Privacy Policy
-            </h1>
-            <p className="text-md text-gray-500">
-              Effective date: <span className="font-semibold">{effectiveDate}</span>
-            </p>
-          </header>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              1. Information We Collect
-            </h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-              <li>
-                **Personal Identification Information:** Name, email address, phone number, and physical address collected when you request a quote or service.
-              </li>
-              <li>
-                **Project Details:** Information related to demolition projects, site photos, plans, and specifications necessary for providing service estimates and execution.
-              </li>
-              <li>
-                **Usage Data:** Cookies, analytics data (e.g., IP address, browser type, pages visited) to understand website performance and user behavior.
-              </li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              2. How We Use Your Information
-            </h2>
-            <p className="text-gray-700 mb-4">
-              We use the collected information for the following purposes:
-            </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-              <li>To **respond to your inquiries** and provide accurate demolition service quotes.</li>
-              <li>To **deliver and manage** the services you have contracted us for.</li>
-              <li>To **improve our website and services** based on usage patterns and feedback.</li>
-              <li>To **comply with legal obligations** and regulatory requirements.</li>
-              <li>To **ensure the security** of our operations and prevent fraudulent activity.</li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              3. Disclosure and Sharing of Information
-            </h2>
-            <p className="text-gray-700 mb-4">
-              We do not sell your personal data. We may share information only as necessary for business operations:
-            </p>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-              <li>
-                **Service Providers:** With third-party vendors who perform functions on our behalf (e.g., hosting, analytics, legal counsel).
-              </li>
-              <li>
-                **Legal Requirements:** When required by law, subpoena, or government request.
-              </li>
-              <li>
-                **Business Transfer:** In connection with a merger, sale of company assets, or acquisition.
-              </li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              4. Data Security and Retention
-            </h2>
-            <p className="text-gray-700">
-              We employ commercially reasonable security measures (e.g., encryption, firewalls) to protect your personal information from unauthorized access, disclosure, alteration, or destruction. We retain your information only as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required or permitted by law.
-            </p>
-          </section>
-          
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              5. Your Privacy Rights
-            </h2>
-            <p className="text-gray-700">
-              Depending on your location, you may have the right to request access to, correction of, or deletion of your personal data we hold. To exercise these rights, please contact us using the details below.
-            </p>
-          </section>
-
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              6. Changes to This Policy
-            </h2>
-            <p className="text-gray-700">
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the **"Effective date"** at the top. You are advised to review this policy periodically for any changes.
-            </p>
-          </section>
-
-          <section className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 border-b pb-2">
-              7. Contact Us
-            </h2>
-            <p className="text-gray-700">
-              If you have any questions or concerns about this Privacy Policy or your data, please contact us:
-            </p>
-
-            <div className="mt-4 p-5 bg-gray-50 rounded-xl border border-gray-200">
-              <p className="text-lg text-gray-900 font-bold mb-1">{companyName}</p>
-              <p className="text-gray-700">
-                Email:{" "}
-                <a
-                  href={`mailto:${contactEmail}`}
-                  className="text-yellow-600 hover:text-yellow-700 font-medium transition duration-150 ease-in-out underline"
-                >
-                  {contactEmail}
-                </a>
-              </p>
-            </div>
-          </section>
-
-          <footer className="mt-12 pt-6 border-t text-center text-sm text-gray-500">
-            <p>
-              **Disclaimer:** This policy is intended as a general guideline and does **not** constitute legal advice. Please consult with a legal professional to ensure full compliance with all applicable laws and regulations.
-            </p>
-          </footer>
-        </div>
-      </div>
-    </div>
-  );
+  return <LegalPageLayout eyebrow="Your information matters" title="Privacy Policy" intro="How YN Demolition / YN Enterprise handles information shared through this website, our enquiry process, quote forms and related technologies." effectiveDate="November 21, 2025" lastUpdated="October 4, 2026" sections={sections} activePage="privacy" />;
 };
 
 export default PrivacyPolicy;
