@@ -35,7 +35,7 @@ function Home() {
       image:
         "https://i.ibb.co.com/6M5RQJZ/Whats-App-Image-2025-09-06-at-10-47-23-AM.jpg",
       buttonClass: "bg-blue-600 hover:bg-blue-700",
-      link: "/service",
+      link: "/services",
       label: "Explore Demolition Services",
     },
     {
@@ -46,7 +46,7 @@ function Home() {
       image:
         "https://i.ibb.co.com/qMGzB0zD/Whats-App-Image-2025-09-06-at-10-47-13-AM.jpg",
       buttonClass: "bg-green-600 hover:bg-green-700",
-      link: "/CivilWorks",
+      link: "/civil-works",
       label: "View Civil Works",
     },
     {
@@ -57,7 +57,7 @@ function Home() {
       image:
         "https://i.ibb.co.com/B2656zKV/Whats-App-Image-2025-09-06-at-10-47-16-AM.jpg",
       buttonClass: "bg-red-600 hover:bg-red-700",
-      link: "/Construction",
+      link: "/construction",
       label: "View Construction Support",
     },
   ];
@@ -882,7 +882,7 @@ function Home() {
               </p>
               <div className="mt-8">
                 <Link
-                  to="/AboutYN"
+                  to="/our-story"
                   className="inline-block rounded-full bg-blue-600 px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700"
                 >
                   Discover Our Values

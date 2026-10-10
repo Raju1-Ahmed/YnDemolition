@@ -67,7 +67,7 @@ function Projects() {
       title: "Cleared Site Handover",
       category: "Infrastructure",
       image: clearedSite,
-      link: "/CivilWorks",
+      link: "/civil-works",
     },
   ];
 

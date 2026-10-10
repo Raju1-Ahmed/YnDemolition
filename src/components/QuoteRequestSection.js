@@ -9,24 +9,37 @@ const trustLogos = [
 ];
 
 const serviceOptions = [
-  "House Demolition",
-  "Civil Demolition",
-  "Construction Demolition",
-  "Other Enquiries",
+"Full House Demolition",
+"Partial Demolition",
+"Civil / Site Works",
+"New Construction",
+"Not Sure - Need Advice",
+];
+
+const startTimelineOptions = [
+  "Emergency",
+  "Within 1 month",
+  "1–3+ months",
 ];
 
 const initialForm = {
   fullName: "",
   phone: "",
   email: "",
-  ownerStatus: "yes",
+  ownerStatus: [],
+  startTimeline: "",
   interest: serviceOptions[0],
   location: "",
   details: "",
 };
 
 const GOOGLE_APPS_SCRIPT_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbyLCZY1Y_-n7lCyjsSSYhGTDiTgic2s4AePI3Hq-xBhtWCPylxOGae_VVL5mqb0dPbe/exec";
+  "https://script.google.com/macros/s/AKfycby3I3mbiAEBumya5IgwMzeZXMe7kJEQLt6x_9enCUsZzZL8d3JxM5LLYGE7-osQRQBd-g/exec";
+
+const pushToDataLayer = (event, parameters = {}) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...parameters });
+};
 
 function QuoteRequestSection({ focusForm = false }) {
   const [formState, setFormState] = useState(initialForm);
@@ -35,11 +48,31 @@ function QuoteRequestSection({ focusForm = false }) {
   const [submitError, setSubmitError] = useState("");
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
+
+    if (type === "checkbox") {
+      setFormState((current) => ({
+        ...current,
+        [name]: checked
+          ? [...current[name], value]
+          : current[name].filter((item) => item !== value),
+      }));
+      setSubmitted(false);
+      setSubmitError("");
+      return;
+    }
+
     setFormState((current) => ({
       ...current,
       [name]: value,
     }));
+
+    if (name === "startTimeline") {
+      pushToDataLayer("quote_start_timeline_selected", {
+        start_timeline: value,
+      });
+    }
+
     setSubmitted(false);
     setSubmitError("");
   };
@@ -54,7 +87,8 @@ function QuoteRequestSection({ focusForm = false }) {
       name: formState.fullName,
       phone: formState.phone,
       email: formState.email,
-      propertyOwner: formState.ownerStatus,
+      propertyOwner: formState.ownerStatus.join(", "),
+      startTimeline: formState.startTimeline,
       service: formState.interest,
       landLocation: formState.location,
       message: formState.details,
@@ -72,6 +106,12 @@ function QuoteRequestSection({ focusForm = false }) {
       if (!response.ok) {
         throw new Error("The quote request could not be submitted.");
       }
+
+      pushToDataLayer("quote_form_submit", {
+        form_name: "quote_request",
+        start_timeline: formState.startTimeline,
+        service_interest: formState.interest,
+      });
 
       setSubmitted(true);
     } catch (error) {
@@ -118,7 +158,7 @@ function QuoteRequestSection({ focusForm = false }) {
             Call +61 0431 270 377
           </a>
           <Link
-            to="/contact"
+            to="/contact-us"
             className="inline-flex items-center gap-2 rounded-xl border-2 border-white px-7 py-4 font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-yellow-700"
           >
             <FaEnvelope />
@@ -147,11 +187,12 @@ function QuoteRequestSection({ focusForm = false }) {
           <div className="rounded-[1.6rem] bg-[#0d1418] px-5 pb-6 pt-10 md:px-8 md:pb-8">
             <div className="text-center">
               <h3 className="text-3xl font-black uppercase leading-tight md:text-5xl">
-                Start Your Demolition Project Today
+                Start Your Project Today
               </h3>
               <p className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.22em] text-amber-200">
                 <FaCommentDots />
-                Serious Enquiries Only
+                Demolition • Civil Works • Construction
+Serious Enquiries Only
               </p>
             </div>
 
@@ -206,36 +247,54 @@ function QuoteRequestSection({ focusForm = false }) {
 
               <fieldset className="rounded-2xl border border-white/10 bg-white/5 p-4">
                 <legend className="px-2 text-sm font-semibold text-slate-200">
-                  4. Are you the property owner?
+                  4. Which option best describes you?
                 </legend>
-                <div className="mt-3 flex flex-wrap gap-6 text-sm text-slate-200">
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="ownerStatus"
-                      value="yes"
-                      checked={formState.ownerStatus === "yes"}
-                      onChange={handleChange}
-                    />
-                    Yes
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="ownerStatus"
-                      value="no"
-                      checked={formState.ownerStatus === "no"}
-                      onChange={handleChange}
-                    />
-                    No
-                  </label>
+                <div className="mt-3 grid gap-3 text-sm text-slate-200">
+                  {["Yes, I am the owner", "I am a builder / developer", "Just enquiring"].map((option) => (
+                    <label key={option} className="flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition hover:border-amber-300/60 hover:bg-white/10">
+                      <input
+                        type="checkbox"
+                        name="ownerStatus"
+                        value={option}
+                        checked={formState.ownerStatus.includes(option)}
+                        onChange={handleChange}
+                        className="h-4 w-4 accent-amber-400"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset className="rounded-2xl border border-white/10 bg-white/5 p-4 md:col-span-2">
+                <legend className="px-2 text-sm font-semibold text-slate-200">
+                  5. When are you planning to start?
+                </legend>
+                <div className="mt-3 grid gap-3 text-sm text-slate-200 md:grid-cols-3">
+                  {startTimelineOptions.map((option) => (
+                    <label
+                      key={option}
+                      className="flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition hover:border-amber-300/60 hover:bg-white/10 has-[:checked]:border-amber-300 has-[:checked]:bg-amber-300/10"
+                    >
+                      <input
+                        type="radio"
+                        name="startTimeline"
+                        value={option}
+                        checked={formState.startTimeline === option}
+                        onChange={handleChange}
+                        required={option === startTimelineOptions[0]}
+                        className="h-4 w-4 accent-amber-400"
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
                 </div>
               </fieldset>
 
               <div className="space-y-4">
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-slate-200">
-                    5. Select Your Interest
+                    6. What service do you need?
                   </span>
                   <select
                     name="interest"
@@ -253,14 +312,15 @@ function QuoteRequestSection({ focusForm = false }) {
 
                 <label className="block">
                   <span className="mb-2 block text-sm font-semibold text-slate-200">
-                    Land Location
+                    Project address / suburb?
+Optiona
                   </span>
                   <input
                     type="text"
                     name="location"
                     value={formState.location}
                     onChange={handleChange}
-                    placeholder="Land location"
+                    placeholder="Enter your answer"
                     className="w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-[#0f67ff] focus:ring-2 focus:ring-[#0f67ff]/30"
                     required
                   />

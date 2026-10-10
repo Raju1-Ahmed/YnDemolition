@@ -24,13 +24,14 @@ function Service() {
     "@type": "LocalBusiness",
     "name": "YN Demolition",
     "description": "Professional demolition, asbestos removal, and site clearance services in Brisbane and Queensland",
-    "url": "https://yndemolition.com.au/service",
+    "url": "https://ynenterprise.com/services",
     "telephone": "+610431270377",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Brisbane",
       "addressRegion": "QLD",
-      "postalCode": "4000",
+      "streetAddress": "84 Browns Plains Rd",
+      "postalCode": "4118",
       "addressCountry": "AU"
     },
     "areaServed": ["Brisbane", "Logan", "Ipswich", "Gold Coast", "Queensland"],
@@ -48,7 +49,7 @@ function Service() {
     // Encode the message for mailto
     const subject = `Quote Request - ${formData.serviceType} Demolition`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nService: ${formData.serviceType}\n\nMessage:\n${formData.message}`;
-    const mailtoLink = `mailto:info@yndemolition.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:privacy@ynenterprise.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
     
     // Show success message

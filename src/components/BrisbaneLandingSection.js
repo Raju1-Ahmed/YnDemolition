@@ -38,7 +38,7 @@ function BrisbaneLandingSection() {
         <div className="relative container mx-auto px-6 py-14 md:py-16">
           <div className="mx-auto mb-12 max-w-4xl text-center">
             <Link
-              to="/quote"
+              to="/get-a-quote"
               className="group mb-8 inline-flex items-center gap-2 rounded-xl border-2 border-yellow-100 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-400 px-7 py-4 font-black text-[#10181d] shadow-[0_18px_40px_rgba(234,179,8,0.42)] ring-4 ring-yellow-300/20 transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:from-yellow-200 hover:via-yellow-300 hover:to-amber-300 hover:shadow-[0_24px_50px_rgba(234,179,8,0.58)] focus:outline-none focus-visible:ring-4 focus-visible:ring-yellow-200"
             >
               Get Your Free Quote <span aria-hidden="true" className="text-xl leading-none transition-transform duration-300 group-hover:translate-x-1">→</span>

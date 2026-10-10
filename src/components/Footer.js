@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  FaGlobe,
   FaEnvelope,
+  FaFacebookF,
+  FaInstagram,
   FaMapMarkerAlt,
   FaPhoneAlt,
 } from "react-icons/fa";
@@ -25,12 +26,12 @@ function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Our Services</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/residential" className="hover:text-yellow-400">Residential Demolition</Link></li>
-            <li><Link to="/commercial" className="hover:text-yellow-400">Commercial Demolition</Link></li>
-            <li><Link to="/highrise" className="hover:text-yellow-400">High-Rise Demolition</Link></li>
-            <li><Link to="/industrial" className="hover:text-yellow-400">Industrial & Infrastructure</Link></li>
-            <li><Link to="/asbestos" className="hover:text-yellow-400">Asbestos Removal</Link></li>
-            <li><Link to="/recycling" className="hover:text-yellow-400">Recycling & Remediation</Link></li>
+            <li><Link to="/residential-demolition" className="hover:text-yellow-400">Residential Demolition</Link></li>
+            <li><Link to="/commercial-demolition" className="hover:text-yellow-400">Commercial Demolition</Link></li>
+            <li><Link to="/high-rise-demolition" className="hover:text-yellow-400">High-Rise Demolition</Link></li>
+            <li><Link to="/industrial-demolition" className="hover:text-yellow-400">Industrial & Infrastructure</Link></li>
+            <li><Link to="/asbestos-removal" className="hover:text-yellow-400">Asbestos Removal</Link></li>
+            <li><Link to="/recycling-remediation" className="hover:text-yellow-400">Recycling & Remediation</Link></li>
           </ul>
         </div>
 
@@ -38,11 +39,11 @@ function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/about" className="hover:text-yellow-400">About Us</Link></li>
+            <li><Link to="/about-us" className="hover:text-yellow-400">About Us</Link></li>
             <li><Link to="/projects" className="hover:text-yellow-400">Projects</Link></li>
             <li><Link to="/sectors" className="hover:text-yellow-400">Sectors</Link></li>
             <li><Link to="/blog" className="hover:text-yellow-400">Blog</Link></li>
-            <li><Link to="/contact" className="hover:text-yellow-400">Contact Us</Link></li>
+            <li><Link to="/contact-us" className="hover:text-yellow-400">Contact Us</Link></li>
           </ul>
         </div>
 
@@ -57,9 +58,24 @@ function Footer() {
 
           {/* Quick Actions */}
           <div className="flex space-x-4 mt-4 text-2xl">
-            <Link to="/contact" className="hover:text-yellow-400" aria-label="Open contact page">
-              <FaGlobe />
-            </Link>
+            <a
+              href="https://www.instagram.com/yn_demolition?psln=aTVnMDRoN2VweWNr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-pink-400"
+              aria-label="YN Demolition on Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.facebook.com/share/1CQiRsrvme/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-blue-400"
+              aria-label="YN Demolition on Facebook"
+            >
+              <FaFacebookF />
+            </a>
             <a href="mailto:yn.enterprises.qld@gmail.com" className="hover:text-yellow-400" aria-label="Email YN Demolition">
               <FaEnvelope />
             </a>

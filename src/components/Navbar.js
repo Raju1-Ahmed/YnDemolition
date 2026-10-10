@@ -3,21 +3,21 @@ import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaChevronDown, FaEnvelope, FaPhoneAlt, FaTimes } from "react-icons/fa";
 
 const serviceItems = [
-  { label: "Residential Demolition", path: "/residential" },
-  { label: "Commercial Demolition", path: "/commercial" },
-  { label: "High-Rise Demolition", path: "/highrise" },
-  { label: "Industrial Demolition", path: "/industrial" },
-  { label: "Asbestos Removal", path: "/asbestos" },
-  { label: "Recycling & Remediation", path: "/recycling" },
+  { label: "Residential Demolition", path: "/residential-demolition" },
+  { label: "Commercial Demolition", path: "/commercial-demolition" },
+  { label: "High-Rise Demolition", path: "/high-rise-demolition" },
+  { label: "Industrial Demolition", path: "/industrial-demolition" },
+  { label: "Asbestos Removal", path: "/asbestos-removal" },
+  { label: "Recycling & Remediation", path: "/recycling-remediation" },
 ];
 
 const simpleItems = [
   { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
+  { label: "About", path: "/about-us" },
   { label: "Projects", path: "/projects" },
   { label: "Sectors", path: "/sectors" },
   { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  { label: "Contact", path: "/contact-us" },
 ];
 
 function Navbar() {
@@ -229,13 +229,13 @@ function Navbar() {
                 Home
               </Link>
               <Link
-                to="/about"
+                to="/about-us"
                 onClick={handleNavLinkClick}
-                className={getDesktopLinkClasses("/about")}
+                className={getDesktopLinkClasses("/about-us")}
               >
                 About
               </Link>
-              {renderDropdown("Services", "/service", serviceItems, "services")}
+              {renderDropdown("Services", "/services", serviceItems, "services")}
               <Link
                 to="/projects"
                 onClick={handleNavLinkClick}
@@ -258,9 +258,9 @@ function Navbar() {
                 Blog
               </Link>
               <Link
-                to="/contact"
+                to="/contact-us"
                 onClick={handleNavLinkClick}
-                className={getDesktopLinkClasses("/contact")}
+                className={getDesktopLinkClasses("/contact-us")}
               >
                 Contact
               </Link>
@@ -346,7 +346,7 @@ function Navbar() {
                       Call Now
                     </a>
                     <Link
-                      to="/contact"
+                      to="/contact-us"
                       onClick={closeMobileMenu}
                       className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/25 bg-cyan-400/10 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-cyan-100"
                     >
@@ -372,10 +372,10 @@ function Navbar() {
                 <div className="rounded-3xl border border-white/8 bg-white/[0.03] p-2">
                   <div className="flex items-center justify-between gap-3 px-3 py-2">
                     <Link
-                      to="/service"
+                      to="/services"
                       onClick={closeMobileMenu}
                       className={`text-left text-sm font-semibold uppercase tracking-[0.16em] transition ${
-                        isActivePath("/service") ? "text-amber-300" : "text-slate-100 hover:text-amber-300"
+                        isActivePath("/services") ? "text-amber-300" : "text-slate-100 hover:text-amber-300"
                       }`}
                     >
                       Services
