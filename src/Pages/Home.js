@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BrisbaneLandingSection from "../components/BrisbaneLandingSection";
 import demolitionPromo from "../Assets/Demolation Promo R4.mp4";
+import demolitionPromoTwo from "../Assets/VID-20260808-WA0009.mp4";
 
 function Home() {
   const settings = {
@@ -302,11 +303,19 @@ function Home() {
 
       <section className="bg-[#0d1418] py-16 text-white">
         <div className="container mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl">
-            <video autoPlay loop muted playsInline controls preload="auto" className="max-h-[560px] w-full object-cover">
-              <source src={demolitionPromo} type="video/mp4" />
-              Your browser does not support the video player.
-            </video>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl">
+              <video autoPlay loop muted playsInline controls preload="metadata" className="aspect-[4/5] h-full w-full object-cover">
+                <source src={demolitionPromo} type="video/mp4" />
+                Your browser does not support the video player.
+              </video>
+            </div>
+            <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl">
+              <video autoPlay loop muted playsInline controls preload="metadata" className="aspect-[4/5] h-full w-full object-cover">
+                <source src={demolitionPromoTwo} type="video/mp4" />
+                Your browser does not support the video player.
+              </video>
+            </div>
           </div>
           <div>
             <p className="text-xs font-black uppercase tracking-[0.3em] text-amber-300">
