@@ -346,7 +346,7 @@ function Navbar() {
                       Call Now
                     </a>
                     <Link
-                      to="/contact-us"
+                      to="/get-a-quote"
                       onClick={closeMobileMenu}
                       className="inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/25 bg-cyan-400/10 px-4 py-3 text-sm font-black uppercase tracking-[0.12em] text-cyan-100"
                     >

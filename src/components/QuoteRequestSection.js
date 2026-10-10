@@ -157,8 +157,8 @@ function QuoteRequestSection({ focusForm = false }) {
             <FaPhoneAlt />
             Call +61 0431 270 377
           </a>
-          <Link
-            to="/contact-us"
+                    <Link
+                      to="/contact-us"
             className="inline-flex items-center gap-2 rounded-xl border-2 border-white px-7 py-4 font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-yellow-700"
           >
             <FaEnvelope />
@@ -355,13 +355,6 @@ Optiona
                 </p>
               </div>
 
-              {submitted ? (
-                <div className="md:col-span-2 rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
-                  Thanks. Your enquiry has been received and we will be in
-                  touch soon.
-                </div>
-              ) : null}
-
               {submitError ? (
                 <div className="md:col-span-2 rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200">
                   {submitError}
@@ -370,6 +363,35 @@ Optiona
             </form>
           </div>
         </div>
+
+        {submitted ? (
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/75 px-4 py-6 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="quote-success-title"
+          >
+            <div className="w-full max-w-md rounded-3xl border border-emerald-300/30 bg-[#10171c] p-6 text-center shadow-[0_25px_90px_rgba(0,0,0,0.55)] sm:p-8">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-400/15 text-4xl text-emerald-300">
+                ✓
+              </div>
+              <h3 id="quote-success-title" className="mt-5 text-2xl font-black uppercase text-white sm:text-3xl">
+                Thank You!
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base">
+                Your quote request has been received. Our team will review your
+                enquiry and get in touch soon.
+              </p>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                className="mt-6 w-full rounded-xl bg-[#0f67ff] px-6 py-3 font-black uppercase tracking-[0.16em] text-white transition hover:bg-[#1f75ff]"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        ) : null}
 
         {!focusForm && <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
           {trustLogos.map((logo) => (

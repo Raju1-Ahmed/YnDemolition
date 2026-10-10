@@ -44,6 +44,7 @@ function Footer() {
             <li><Link to="/sectors" className="hover:text-yellow-400">Sectors</Link></li>
             <li><Link to="/blog" className="hover:text-yellow-400">Blog</Link></li>
             <li><Link to="/contact-us" className="hover:text-yellow-400">Contact Us</Link></li>
+            <li><Link to="/get-a-quote" className="hover:text-yellow-400">Get a Quote</Link></li>
           </ul>
         </div>
 
