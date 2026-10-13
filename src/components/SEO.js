@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://ynenterprise.com";
+const SITE_URL = "https://www.ynenterprise.com";
 const DEFAULT_IMAGE =
   "https://mag-engineering.b-cdn.net/wp-content/uploads/2023/04/Building-Demolition-Contractors-Banner-Images-1024x446.png";
 

@@ -98,6 +98,7 @@ function App() {
         <Route path="/industrial-infra" element={<Navigate to="/industrial-infrastructure" replace />} />
         <Route path="/asbestos-removal" element={<SEOPage seo={{ title: "Asbestos Removal Brisbane | YN Demolition", description: "Compliance-focused asbestos removal support for residential, commercial and redevelopment projects across Brisbane.", path: "/asbestos-removal" }}><AsbestosRemoval /></SEOPage>} />
         <Route path="/asbestos" element={<Navigate to="/asbestos-removal" replace />} />
+        <Route path="/services/asbestos-removal" element={<Navigate to="/asbestos-removal" replace />} />
         <Route path="/recycling-remediation" element={<SEOPage seo={{ title: "Recycling and Remediation Brisbane | YN Demolition", description: "Responsible demolition recycling, remediation and site recovery support for Queensland projects.", path: "/recycling-remediation" }}><RecyclingRemediation /></SEOPage>} />
         <Route path="/recycling" element={<Navigate to="/recycling-remediation" replace />} />
         <Route path="/our-story" element={<SEOPage seo={{ title: "Our Story | YN Demolition Brisbane", description: "Discover the values, experience and project approach behind YN Demolition and YN Enterprise.", path: "/our-story" }}><AboutYN /></SEOPage>} />
