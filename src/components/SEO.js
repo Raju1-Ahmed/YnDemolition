@@ -1,60 +1,34 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://ynenterprise.com";
-const DEFAULT_IMAGE = "https://mag-engineering.b-cdn.net/wp-content/uploads/2023/04/Building-Demolition-Contractors-Banner-Images-1024x446.png";
-
-function upsertMeta(attribute, value, content) {
-  let element = document.head.querySelector(`meta[${attribute}="${value}"]`);
-  if (!element) {
-    element = document.createElement("meta");
-    element.setAttribute(attribute, value);
-    document.head.appendChild(element);
-  }
-  element.setAttribute("content", content);
-}
+const DEFAULT_IMAGE =
+  "https://mag-engineering.b-cdn.net/wp-content/uploads/2023/04/Building-Demolition-Contractors-Banner-Images-1024x446.png";
 
 function SEO({ title, description, path = "/", image = DEFAULT_IMAGE, schema }) {
-  useEffect(() => {
-    const canonicalUrl = `${SITE_URL}${path}`;
-    document.title = title;
+  const canonicalUrl = `${SITE_URL}${path}`;
 
-    upsertMeta("name", "description", description);
-    upsertMeta("property", "og:title", title);
-    upsertMeta("property", "og:description", description);
-    upsertMeta("property", "og:url", canonicalUrl);
-    upsertMeta("property", "og:type", "website");
-    upsertMeta("property", "og:image", image);
-    upsertMeta("name", "twitter:card", "summary_large_image");
-    upsertMeta("name", "twitter:title", title);
-    upsertMeta("name", "twitter:description", description);
-    upsertMeta("name", "twitter:image", image);
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = canonicalUrl;
-
-    const schemaId = "yn-seo-schema";
-    let schemaElement = document.getElementById(schemaId);
-    if (schema) {
-      if (!schemaElement) {
-        schemaElement = document.createElement("script");
-        schemaElement.id = schemaId;
-        schemaElement.type = "application/ld+json";
-        document.head.appendChild(schemaElement);
-      }
-      schemaElement.textContent = JSON.stringify(schema);
-    }
-
-    return () => {
-      if (schemaElement) schemaElement.remove();
-    };
-  }, [description, image, path, schema, title]);
-
-  return null;
+  return (
+    <Helmet prioritizeSeoTags>
+      <html lang="en-AU" />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={canonicalUrl} />
+      <meta property="og:site_name" content="YN Demolition" />
+      <meta property="og:locale" content="en_AU" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:image" content={image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+      {schema ? (
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      ) : null}
+    </Helmet>
+  );
 }
 
 export const businessSchema = {
@@ -74,6 +48,42 @@ export const businessSchema = {
   },
   areaServed: ["Brisbane", "Logan", "Ipswich", "Gold Coast", "Queensland"],
   priceRange: "$$",
+};
+
+export const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    businessSchema,
+    {
+      "@type": "WebSite",
+      name: "YN Demolition",
+      url: SITE_URL,
+      inLanguage: "en-AU",
+    },
+  ],
+};
+
+export const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Demolition Services Brisbane",
+  serviceType: [
+    "Residential Demolition",
+    "Commercial Demolition",
+    "Industrial Demolition",
+    "High-Rise Demolition",
+    "Asbestos Removal",
+    "Site Clearance",
+  ],
+  description:
+    "Professional residential, commercial, industrial demolition, asbestos removal and site-clearance services across Brisbane and nearby Queensland areas.",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "YN Demolition",
+    url: SITE_URL,
+    telephone: "+61 431 270 377",
+  },
+  areaServed: ["Brisbane", "Logan", "Ipswich", "Gold Coast", "Queensland"],
 };
 
 export default SEO;

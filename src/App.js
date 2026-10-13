@@ -27,7 +27,7 @@ import NotFound from "./Pages/NotFound";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Terms from "./Pages/Terms";
 import QuotePage from "./Pages/QuotePage";
-import SEO, { businessSchema } from "./components/SEO";
+import SEO, { homeSchema, servicesSchema } from "./components/SEO";
 
 const pageSEO = {
   home: { title: "Demolition Services Brisbane | YN Demolition", description: "Licensed residential, commercial demolition, asbestos removal and site clearance services across Brisbane, Logan, Ipswich and nearby Queensland areas.", path: "/" },
@@ -68,7 +68,7 @@ function App() {
           path="/"
           element={
             <>
-              <SEOPage seo={pageSEO.home} schema={businessSchema}>
+              <SEOPage seo={pageSEO.home} schema={homeSchema}>
                 <HeroBanner />
                 <Home />
               </SEOPage>
@@ -82,7 +82,7 @@ function App() {
         <Route path="/contact" element={<Navigate to="/contact-us" replace />} />
         <Route path="/get-a-quote" element={<SEOPage seo={pageSEO.quote}><QuotePage /></SEOPage>} />
         <Route path="/quote" element={<Navigate to="/get-a-quote" replace />} />
-        <Route path="/services" element={<SEOPage seo={pageSEO.services}><Service /></SEOPage>} />
+        <Route path="/services" element={<SEOPage seo={pageSEO.services} schema={servicesSchema}><Service /></SEOPage>} />
         <Route path="/service" element={<Navigate to="/services" replace />} />
         <Route path="/sectors" element={<SEOPage seo={pageSEO.sectors}><Sectors /></SEOPage>} />
         <Route path="/blog" element={<SEOPage seo={pageSEO.blog}><Blog /></SEOPage>} />

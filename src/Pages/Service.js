@@ -19,26 +19,6 @@ function Service() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   // JSON-LD Schema Markup
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "YN Demolition",
-    "description": "Professional demolition, asbestos removal, and site clearance services in Brisbane and Queensland",
-    "url": "https://ynenterprise.com/services",
-    "telephone": "+610431270377",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Brisbane",
-      "addressRegion": "QLD",
-      "streetAddress": "84 Browns Plains Rd",
-      "postalCode": "4118",
-      "addressCountry": "AU"
-    },
-    "areaServed": ["Brisbane", "Logan", "Ipswich", "Gold Coast", "Queensland"],
-    "serviceType": ["Residential Demolition", "Commercial Demolition", "Industrial Demolition", "High-Rise Demolition", "Asbestos Removal"],
-    "priceRange": "$$"
-  };
-
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -125,18 +105,15 @@ function Service() {
 
   return (
     <div className="font-sans text-gray-800 scroll-smooth">
-      {/* Schema Markup in Head */}
-      <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-
       {/* Intro Section - Trust & Credibility */}
       <section className="py-16 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
         <div className="container mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-3 items-center">
             {/* Left - Content */}
             <div className="lg:col-span-2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-right">
-                Why Brisbane Trusts YN Demolition
-              </h2>
+              <h1 className="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-right">
+                Brisbane Demolition Services for Homes, Builders and Businesses
+              </h1>
               <p className="text-lg text-gray-300 mb-4 leading-relaxed" data-aos="fade-right" data-aos-delay="100">
                 Since our establishment, YN Demolition has been Queensland's trusted partner for safe, certified demolition and asbestos removal. With over a decade of industry expertise, we've successfully completed hundreds of projects ranging from residential units to complex industrial sites.
               </p>
@@ -196,9 +173,9 @@ function Service() {
         }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-        <h1 className="text-white text-4xl md:text-5xl font-bold z-10" data-aos="fade-down">
-          Our Services
-        </h1>
+        <h2 className="text-white text-4xl md:text-5xl font-bold z-10" data-aos="fade-down">
+          Our Demolition Services in Brisbane
+        </h2>
       </section>
 
       {/* Services Cards */}
@@ -271,7 +248,7 @@ function Service() {
 
                   {/* CTA Button */}
                   <a
-                    href="/contact"
+                    href="/contact-us"
                     className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-xl shadow-md hover:from-amber-500 hover:to-amber-600 transition text-center"
                   >
                     Get Quote
@@ -392,7 +369,7 @@ function Service() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/quote"
+                to="/get-a-quote"
                 className="px-8 py-4 bg-amber-400 text-black font-bold rounded-xl hover:bg-amber-500 transition shadow-lg"
               >
                 Get Free Quote
@@ -545,7 +522,7 @@ function Service() {
                   </div>
 
                   <a
-                    href="/contact"
+                    href="/contact-us"
                     className="block w-full py-2 text-center bg-amber-100 text-amber-800 font-semibold rounded-lg hover:bg-amber-200 transition"
                   >
                     Get Similar Results
@@ -811,7 +788,7 @@ function Service() {
               Our expert team will assess your project and recommend the best demolition solution. Contact us for a free consultation.
             </p>
             <a
-              href="/contact"
+              href="/contact-us"
               className="inline-block px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-xl hover:from-amber-500 hover:to-amber-600 transition shadow-lg"
             >
               Get Free Consultation
@@ -976,7 +953,7 @@ function Service() {
               Still have questions? Our experts are here to help!
             </p>
             <a
-              href="/contact"
+              href="/contact-us"
               className="inline-block px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-xl hover:from-amber-500 hover:to-amber-600 transition shadow-lg"
             >
               Contact Our Team
@@ -1194,7 +1171,7 @@ function Service() {
           Contact us today to get a quote or consultation.
         </p>
         <a
-          href="/contact"
+          href="/contact-us"
           className="px-6 py-3 bg-black text-yellow-500 font-semibold rounded-lg shadow hover:bg-gray-900 transition"
           data-aos="fade-up"
           data-aos-delay="200"
