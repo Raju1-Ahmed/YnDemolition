@@ -30,12 +30,12 @@ import QuotePage from "./Pages/QuotePage";
 import SEO, { homeSchema, servicesSchema } from "./components/SEO";
 
 const pageSEO = {
-  home: { title: "Demolition Services Brisbane | YN Demolition", description: "Licensed residential, commercial demolition, asbestos removal and site clearance services across Brisbane, Logan, Ipswich and nearby Queensland areas.", path: "/" },
+  home: { title: "Brisbane Demolition Services & Contractors | YN Demolition", description: "Licensed Brisbane demolition contractors for house demolition, commercial demolition, asbestos removal and site clearance across Brisbane, Logan, Ipswich and nearby Queensland areas.", path: "/" },
   about: { title: "About YN Demolition | Brisbane Demolition Specialists", description: "Learn about YN Demolition, our safety-first approach, experience and commitment to reliable demolition and site-clearance services.", path: "/about-us" },
   projects: { title: "Demolition Projects Brisbane | YN Demolition", description: "Explore residential, commercial, industrial and asbestos-related demolition projects delivered by YN Demolition.", path: "/projects" },
   contact: { title: "Contact YN Demolition Brisbane", description: "Contact YN Demolition for demolition, asbestos removal, site clearance and project enquiries across Brisbane and nearby areas.", path: "/contact-us" },
   quote: { title: "Request a Demolition Quote Brisbane | YN Demolition", description: "Request a clear, obligation-free demolition quote from YN Demolition for residential, commercial and site-clearance work.", path: "/get-a-quote" },
-  services: { title: "Demolition Services Brisbane | YN Demolition", description: "Residential, commercial, industrial, high-rise demolition, asbestos removal and site-clearance services from YN Demolition.", path: "/services" },
+  services: { title: "Demolition Contractors Brisbane | Residential & Commercial", description: "Residential house demolition, commercial building demolition, industrial site clearance, asbestos removal and civil works from licensed demolition contractors in Brisbane, Logan and Ipswich.", path: "/services" },
   sectors: { title: "Industries We Serve | YN Demolition Brisbane", description: "Demolition and site-preparation support for homeowners, builders, developers, commercial and industrial clients.", path: "/sectors" },
   blog: { title: "Demolition Advice and News | YN Demolition", description: "Practical demolition, asbestos, safety and site-preparation insights from YN Demolition.", path: "/blog" },
 };

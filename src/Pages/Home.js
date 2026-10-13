@@ -344,10 +344,12 @@ function Home() {
               Projects Moving
             </h2>
             <p className="mt-5 text-base leading-7 text-gray-600 md:text-lg md:leading-8">
-              Whether you need house demolition, commercial demolition,
-              asbestos-related support or site preparation, our service approach
-              is built around clearer planning, safer execution and a smoother
-              handover into the next project stage.
+              Whether you need house demolition Brisbane property owners can
+              plan with confidence, commercial demolition, asbestos removal,
+              industrial site clearance or civil works and site preparation,
+              our licensed demolition contractors focus on safe planning,
+              efficient execution and a cleaner handover across Brisbane,
+              Logan and Ipswich.
             </p>
           </div>
 

@@ -120,6 +120,12 @@ function Service() {
               <p className="text-lg text-gray-300 mb-6 leading-relaxed" data-aos="fade-right" data-aos-delay="200">
                 Our commitment to safety, environmental responsibility, and customer satisfaction has made us the preferred choice for property owners, contractors, and developers across Brisbane, Logan, Ipswich, Gold Coast, and beyond.
               </p>
+              <p className="text-lg text-gray-300 mb-6 leading-relaxed" data-aos="fade-right" data-aos-delay="250">
+                From knockdown rebuild demolition Brisbane homeowners can rely on to commercial building demolition, office interior strip out services, industrial site clearance, civil works and site preparation, our team coordinates each project around access, safety and timing.
+              </p>
+              <p className="text-lg text-gray-300 mb-6 leading-relaxed" data-aos="fade-right" data-aos-delay="300">
+                As licensed demolition contractors, we provide safe demolition planning, asbestos removal and compliance support, and environmentally responsible demolition practices for projects across Brisbane, Logan and Ipswich.
+              </p>
 
               {/* Trust Badges */}
               <div className="grid gap-4 sm:grid-cols-2" data-aos="fade-right" data-aos-delay="300">
