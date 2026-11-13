@@ -10,8 +10,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BrisbaneLandingSection from "../components/BrisbaneLandingSection";
-import demolitionPromo from "../Assets/Demolation Promo R4.mp4";
-import demolitionPromoTwo from "../Assets/VID-20260808-WA0009.mp4";
+
+const demolitionPromo =
+  "https://res.cloudinary.com/dpxdoqotw/video/upload/v1794561685/demolition-videos/Demolation_Promo_R4.mp4";
+const demolitionPromoTwo =
+  "https://res.cloudinary.com/dpxdoqotw/video/upload/v1794561721/demolition-videos/VID-20260808-WA0009.mp4";
 
 function Home() {
   const settings = {
