@@ -1,0 +1,5 @@
+[build]
+  publish = "build"
+
+[build.environment]
+  NETLIFY_BUILD_DISABLE_BADGE = "true"
